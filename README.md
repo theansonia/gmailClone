@@ -1,3 +1,5 @@
+<img width="1676" alt="Screen Shot 2021-08-02 at 6 45 12 PM" src="https://user-images.githubusercontent.com/63320350/127932868-88815899-95c6-4910-b3d4-d043b1d7e432.png">
+
 # Getting Started
 
 NPM install to install all the dependencies
