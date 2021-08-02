@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from './components/layout/Header';
+import Main from './components/layout/Main';
+import { useContext } from 'react';
+import { StateContext } from './contexts/stateContext';
+import styled from 'styled-components';
+const drawerWidth = 240;
 
 function App() {
+  const { open } = useContext(StateContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Wrapper active={open}>
+        <Header />
+        <Main drawerWidth={drawerWidth} />
+      </Wrapper>
+    </Router>
   );
 }
 
 export default App;
+
+const Wrapper = styled.div`
+  width: ${(props) =>
+    props.active ? `calc(100% - ${drawerWidth}px)` : '100%'};
+`;

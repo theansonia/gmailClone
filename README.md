@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+NPM install to install all the dependencies
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `npm test`
 
-### `yarn test`
+Launches the test runner in the interactive coverage mode.
+I would like to have more coverage but I ran out of time from some technical difficulties.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Decisions
 
-### `yarn build`
+I know we weren't supposed to spend too much time styling but that's against my nature so put in an extra couple hours and used the following tools to make it much simpler of a process.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Styled Components:
+  - Easily reusable. Although I didn't have time to organize, I often will put many different styled components in directory of it's own and reuse the styles over and over again.
+  - Scoped View: I love being able to style in my react / jsx files - it saves so much time from going back and forth between files and also prevents naming conflicts. Also, it gives the power of inline styling without the downside.
+  - Can easily implement conditional stylijng outside of the component.
+  - Sass out of the box
+- Material UI
+  - Consistent style throughout the app and other sites
+  - Easily customizable
+  - Well documented
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# State Management
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I mostly used Context API to manage state and it worked out pretty well. I used the useState hook a couple times to manage local state within a component and when I was creating my explanation modals I would pass that state down one level. For some reason, I also had to use useState to manage the state of the stars in my email rows.
 
-### `yarn eject`
+### Fetches
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Please note that I created a custom hook called UseFetchData that can be used by all of the implemented Get requests. If I was to implement other HTTP Request methods, I'd likely have to create a different hook or just add the functionality within the components.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+My biggest priority was to ensure I got all the GET fetches implemented because without those, there wasn't much of an app. The biggest priorities within those were folders and mail then contacts. Settings and Filters were pretty easy to implement.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+After that I implemneted the following:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Composing a new email - this seems like a pretty big feature for an email product and I had already designed the button so it was pretty easy to implement the functionality.
+- Create Contact - This also felt like a pretty important feature to the end user and again only took an extra couple lines of code.
+- Delete Email - A user should be able to permanently delete an email from our database so I made this a priority. Again, I already had all the buttons in place.
+- Starred and Important - These felt like something a user would want and use often. I know that I do.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+\*\*\*If I could do it over, I'd probably focus on prioritizing moving a message to another folder. That takes a little bit more finessing with props and is an important feature for users who use their inbox as a task list.
